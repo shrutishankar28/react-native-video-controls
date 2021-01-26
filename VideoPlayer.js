@@ -729,6 +729,12 @@ export default class VideoPlayer extends Component {
     if (this.styles.containerStyle !== nextProps.style) {
       this.styles.containerStyle = nextProps.style;
     }
+
+    if (this.state.rate !== nextProps.rate) {
+      this.setState({
+        rate: nextProps.rate,
+      });
+    }
   }
 
   /**
@@ -1063,7 +1069,7 @@ export default class VideoPlayer extends Component {
         {...this.player.seekPanResponder.panHandlers}>
         <View
           style={styles.seekbar.track}
-          onLayout={event =>
+          onLayout={(event) =>
             (this.player.seekerWidth = event.nativeEvent.layout.width)
           }
           pointerEvents={'none'}>
@@ -1193,7 +1199,7 @@ export default class VideoPlayer extends Component {
         <View style={[styles.player.container, this.styles.containerStyle]}>
           <Video
             {...this.props}
-            ref={videoPlayer => (this.player.ref = videoPlayer)}
+            ref={(videoPlayer) => (this.player.ref = videoPlayer)}
             resizeMode={this.state.resizeMode}
             volume={this.state.volume}
             paused={this.state.paused}
